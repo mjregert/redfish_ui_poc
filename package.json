@@ -1,5 +1,5 @@
 {
-  "name": "Redfish UI POC",
+  "name": "Redfish-UI-POC",
   "version": "0.0.1",
   "description": "A Redfish proof-of-concept UI built using the Angular-CLI starter for a Clarity project",
   "angular-cli": {},
