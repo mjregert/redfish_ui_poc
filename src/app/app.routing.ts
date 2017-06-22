@@ -8,12 +8,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
-export const ROUTES: Routes = [
-    {path: '', redirectTo: 'home', pathMatch: 'full'},
-    {path: 'home', component: HomeComponent},
-    {path: 'about', component: AboutComponent}
+const routes: Routes = [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'settings', component: SettingsComponent }
 ];
 
-export const ROUTING: ModuleWithProviders = RouterModule.forRoot(ROUTES);
+export const AppRoutingModule: ModuleWithProviders = RouterModule.forRoot(routes);
