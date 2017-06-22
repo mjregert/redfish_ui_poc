@@ -1,7 +1,7 @@
 {
-  "name": "clarity-seed",
-  "version": "0.9.0",
-  "description": "Angular-CLI starter for a Clarity project",
+  "name": "Redfish UI POC",
+  "version": "0.0.1",
+  "description": "A Redfish proof-of-concept UI built using the Angular-CLI starter for a Clarity project",
   "angular-cli": {},
   "scripts": {
     "start": "ng serve",
@@ -33,7 +33,7 @@
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0",
+    "@angular/cli": "^1.1.2",
     "@angular/compiler-cli": "^4.0.1",
     "@types/core-js": "^0.9.34",
     "@types/jasmine": "~2.2.30",
