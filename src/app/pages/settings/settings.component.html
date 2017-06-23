@@ -1,3 +1,60 @@
-<p>
-  settings works!
-</p>
+<div *ngIf="!settings.v20ApiUrl" class="alert alert-danger">
+    <div class="alert-item">
+        <span class="alert-text">The settings need to be configured for the UI to work properly.</span>
+    </div>
+</div>
+<form id="settingsForm" class="compact" #f="ngForm" (ngSubmit)="applySettings(f.value)">
+    <section id="securitySettingsSection" class="form-block">
+        <label>Security Settings</label>
+        <div class="form-group">
+            <label>Secure Connections</label>
+            <div class="toggle-switch">
+                <input id="secureConnToggle" type="checkbox" [(ngModel)]="settings.secureConnToggle" name="secureConnToggle">
+                <label for="secureConnToggle"></label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>API Authentication</label>
+            <div class="toggle-switch">
+                <input id="apiAuthToggle" type="checkbox" [(ngModel)]="settings.apiAuthToggle" name="apiAuthToggle">
+                <label for="apiAuthToggle"></label>
+            </div>
+        </div>
+        <div *ngIf="settings.apiAuthToggle">
+            <div class="form-group">
+                <label for="apiAuthUserName">User Name</label>
+                <input id="apiAuthUserName" type="text" placeholder="User Name" size="50" [(ngModel)]="settings.apiAuthUserName" name="apiAuthUserName">
+            </div>
+            <div class="form-group">
+                <label for="apiAuthPassword">Password</label>
+                <input id="apiAuthPassword" type="password" placeholder="Password" size="50" [(ngModel)]="settings.apiAuthPassword" name="apiAuthPassword">
+            </div>
+        </div>
+    </section>
+    <section id="endpointSettingsSection" class="form-block">
+        <label>Endpoint Settings</label>
+        <div class="form-group">
+            <label for="v11ApiUrl">RackHD Northbound API v1.1</label>
+            <input id="v11ApiUrl" type="url" placeholder="http://localhost:9090/api/1.1" size="50" [(ngModel)]="settings.v11ApiUrl" name="v11ApiUrl">
+        </div>
+        <div class="form-group">
+            <label for="v20ApiUrl">RackHD Northbound API v2.0</label>
+            <input id="v20ApiUrl" type="url" placeholder="http://localhost:9090/api/2.0" size="50" [(ngModel)]="settings.v20ApiUrl" name="v20ApiUrl">
+        </div>
+        <div class="form-group">
+            <label for="v1RedfishUrl">RackHD Northbound Redfish API v1</label>
+            <input id="v1RedfishUrl" type="url" placeholder="http://localhost:9090/redfish/v1" size="50" [(ngModel)]="settings.v1RedfishUrl" name="v1RedfishUrl">
+        </div>
+        <div class="form-group">
+            <label for="webSocketUrl">RackHD WebSocket URL</label>
+            <input id="webSocketUrl" type="url" placeholder="http://localhost:9090" size="50" ngModel="{{ settings.webSocketUrl }}" name="webSocketUrl">
+        </div>
+        <div class="form-group">
+            <label for="elasticSearchUrl">Elasticsearch API</label>
+            <input id="elasticSearchUrl" type="url" placeholder="http://localhost:9200" size="50" ngModel="{{ settings.elasticSearchUrl }}"
+                name="elasticSearchUrl">
+        </div>
+    </section>
+    <button type="reset" class="btn btn-secondary">Reset</button>
+    <button type="submit" class="btn btn-primary">Apply</button>
+</form>
