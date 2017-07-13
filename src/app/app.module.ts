@@ -8,23 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { ClarityModule } from 'clarity-angular';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from "./app.routing";
-import { HomeComponent } from './pages/home/home.component';
-import { AboutComponent } from './pages/about/about.component';
-import { SettingsComponent } from './pages/settings/settings.component';
-import { LayoutComponent } from './layout/layout.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { MainComponent } from './layout/main/main.component';
+import { AppRoutingModule } from './app-routing.module';
+import { UiModule } from './ui/ui.module';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        AboutComponent,
-        HomeComponent,
-        SettingsComponent,
-        LayoutComponent,
-        HeaderComponent,
-        MainComponent
+        AppComponent
     ],
     imports: [
         BrowserAnimationsModule,
@@ -32,10 +22,11 @@ import { MainComponent } from './layout/main/main.component';
         FormsModule,
         HttpModule,
         ClarityModule.forRoot(),
+        UiModule,
+        PagesModule,
         AppRoutingModule
     ],
     exports: [
-        LayoutComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

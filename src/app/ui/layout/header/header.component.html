@@ -1,0 +1,29 @@
+  <clr-header class="rackhd-header">
+    <div class="branding">
+      <a href="#" class="nav-link">
+        <span class="clr-icon rackhd-logo"></span>
+        <span class="title">RackHD Redfish UI</span>
+      </a>
+    </div>
+      <div class="header-nav">
+        <a *ngFor="let headerLink of headerLinks" [routerLink]="headerLink.link" routerLinkActive="active" class="nav-link nav-icon">
+          <clr-icon [attr.shape]="headerLink.icon"></clr-icon>
+        </a>
+      </div>
+    <div *ngFor="let headerAction of headerActions" class="header-actions">
+      <a class="nav-link nav-icon" routerLinkActive="active" [routerLink]="headerAction.link">
+        <clr-icon [attr.shape]="headerAction.icon"></clr-icon>
+      </a>
+    </div>
+  </clr-header>
+  <nav class="sub-nav" [clr-nav-level]="1">
+    <ul class="nav">
+      <li *ngFor="let subLink of subLinks" class="nav-item">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="subLink.link">{{subLink.label}}</a>
+      </li>
+    </ul>
+  </nav>
+
+
+
+

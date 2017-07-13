@@ -1,0 +1,55 @@
+<h1>All Computer Systems ({{(computerSystems | async)?.length}})</h1>
+<div class="row">
+    <div class="com-xl-8 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <clr-datagrid>
+            <clr-dg-column [clrDgField]="'serialNumber'">Serial Number</clr-dg-column>
+            <clr-dg-column [clrDgField]="'name'">Model</clr-dg-column>
+            <clr-dg-column [clrDgField]="'description'">Description</clr-dg-column>
+            <clr-dg-column [clrDgField]="'powerState'">Power State</clr-dg-column>
+            <clr-dg-row *clrDgItems="let cs of (computerSystems | async)" [clrDgItem]="cs" (click)="onSelect(cs)" [class.selected]="cs === selectedSystem">
+                <clr-dg-cell>{{ cs.serialNumber }}</clr-dg-cell>
+                <clr-dg-cell>{{ cs.model }}</clr-dg-cell>
+                <clr-dg-cell>{{ cs.description }}</clr-dg-cell>
+                <clr-dg-cell>{{ cs.powerState }}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-footer>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Computer Systems
+                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div *ngIf="selectedSystem" class="node-details">
+            <div class="card dell-card">
+                <div class="card-header">
+                    Selected (1)
+                </div>
+                <!--div class="card-img">
+                    <img src="../../../images/server.png" alt="Server Image" style="height: 131px; width: 100px; margin: auto;" />
+                </div-->
+                <div class="card-title dell-card-title">
+                        {{selectedSystem.model}}: {{selectedSystem.serialNumber}}
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary btn-block" href="#" [routerLink]="[selectedSystem.id]">View Details</a>
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                        <dl>
+                            <dt>Node ID</dt>
+                            <dd>{{selectedSystem.id}}</dd>
+                            <dt>Description</dt>
+                            <dd>{{selectedSystem.description}}</dd>
+                            <dt>System Type</dt>
+                            <dd>{{selectedSystem.systemType}}</dd>
+                            <dt>Asset Tag</dt>
+                            <dd>{{selectedSystem.assetTag}}</dd>
+                            <!--dt>Indicator LED</dt>
+                            <dd>{{selectedSystem.indicatorLed}}</dd-->
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

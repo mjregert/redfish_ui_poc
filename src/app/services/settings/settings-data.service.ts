@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 import { Settings } from '../../models/settings';
 
 @Injectable()
-export class SettingsService {
+export class SettingsDataService {
+
     ///////////////////////////////////////////////////////////////////////////
     // PUBLIC FUNCTIONS
     //-------------------------------------------------------------------------
