@@ -1,3 +1,10 @@
+Redfish POC
+
+This project is a Proof-of-concept (POC) Project to leverage the VMware Clarity Design system UI components to provide a UI ontop of the new [Redfish](https://www.dmtf.org/standards/redfish) APIs.  It's written in Angular 2.
+
+===========
+
+
 ![Clarity](logo.png)
 
 Clarity Seed
