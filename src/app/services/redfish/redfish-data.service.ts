@@ -29,7 +29,7 @@ export class RedfishDataService extends DataService {
         this._baseUrl = this.settingsDataService.getAllSettings().v1RedfishUrl;
         return this._baseUrl;
     }
-
+ 
     ///////////////////////////////////////////////////////////////////////////
     // PUBLIC FUNCTIONS
     //-------------------------------------------------------------------------
@@ -38,6 +38,7 @@ export class RedfishDataService extends DataService {
             this.get(this.baseUrl + '/systems')
             .subscribe(collectionAsJson => {
                 console.log("\n\nComputerSystemCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
+                //let collection: ComputerSystemCollection = JSON.parse(JSON.stringify(collectionAsJson));
                 let collection: ComputerSystemCollection = new ComputerSystemCollection(collectionAsJson);
                 observer.next(collection);
                 observer.complete();
@@ -50,7 +51,7 @@ export class RedfishDataService extends DataService {
             let theUrl = this.baseUrl + '/systems/' + id;
             this.get(theUrl)
             .subscribe(computerSystemAsJson => {
-                //console.log("\n\nComputer System ******\n" + JSON.stringify(computerSystemAsJson, null, 4));
+                console.log("\n\nComputer System ******\n" + JSON.stringify(computerSystemAsJson, null, 4));
                 let computerSystem: ComputerSystem = new ComputerSystem(computerSystemAsJson);
                 observer.next(computerSystem);
                 observer.complete();

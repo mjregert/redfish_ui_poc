@@ -42,7 +42,6 @@ export class ComputerSystemsComponent implements OnInit {
                     let url = element['@odata.id'];
                     let tokens = url.split('/');
                     let id = tokens[tokens.length-1];
-                    console.log("here");
                     let compSystem = this.dataService.getComputerSystem(id);
                     let csSubscription = compSystem.forEach(element => {
                         csArray.push(element);

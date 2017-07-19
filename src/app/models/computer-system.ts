@@ -14,6 +14,7 @@ export class ComputerSystem {
     partNumber: string;
     uuid: string;
     hostName: string;
+    indicatorLed: string;
     powerState: string;
 
     /*
@@ -27,8 +28,13 @@ export class ComputerSystem {
             this.systemType   = json["SystemType"];
             this.assetTag     = json["AssetTag"];
             this.manufacturer = json["Manufacturer"];
-            this.serialNumber = json["SerialNumber"];
             this.model        = json["Model"];
+            this.sku          = json["SKU"];
+            this.serialNumber = json["SerialNumber"];
+            this.partNumber   = json["PartNumber"];
+            this.uuid         = json["UUID"];
+            this.hostName     = json["HostName"];
+            this.indicatorLed = json["IndicatorLED"];
             this.powerState   = json["PowerState"];
         }
     }    
