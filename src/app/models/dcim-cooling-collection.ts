@@ -1,13 +1,13 @@
 /*
  Copyright © 2017 Dell Inc. or its subsidiaries.  All Rights Reserved.
  */
-export class ComputerSystemCollection {
+export class DcimCoolingCollection {
     name: string;
     membersCount: number;
     members: string[];
 
     /*
-    Constructs a ComputerSystemCollection from a JSON payload
+    Constructs a DcimCoolingCollection from a JSON payload
      */
 
      constructor(json?: Object) {

@@ -10,6 +10,8 @@ import { DataService } from '../data.service';
 import {SettingsDataService} from "../settings/settings-data.service";
 import { ComputerSystemCollection } from '../../models/computer-system-collection';
 import { ComputerSystem } from '../../models/computer-system';
+import { DcimCooling } from '../../models/dcim-cooling';
+import { DcimCoolingCollection } from '../../models/dcim-cooling-collection';
 
 @Injectable()
 export class RedfishDataService extends DataService {
@@ -58,6 +60,29 @@ export class RedfishDataService extends DataService {
             });
         });
     }
-    
+
+    getDcimCoolingCollection(): Observable <DcimCoolingCollection> {
+        return Observable.create(observer => {
+            this.get('assets/data/DCIMCooling.json')
+            .subscribe(collectionAsJson => {
+                console.log("\n\nDcimCoolingCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
+                let collection: DcimCoolingCollection = new DcimCoolingCollection(collectionAsJson);
+                observer.next(collection);
+                observer.complete();
+            });
+        });
+    }
+
+    getCooling(): Observable <DcimCooling> {
+        return Observable.create(observer => {
+            this.get('assets/data/cooling.json')
+            .subscribe(dcimCoolingAsJson => {
+                console.log("\n\nDCIMCooling******\n" + JSON.stringify(dcimCoolingAsJson, null, 4));
+                let dcimCooling: DcimCooling = new DcimCooling(dcimCoolingAsJson);
+                observer.next(dcimCooling);
+                observer.complete();
+            });
+        });
+    }
 }
 
