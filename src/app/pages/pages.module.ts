@@ -12,6 +12,7 @@ import { ComputerSystemsComponent } from './computer-systems/computer-systems.co
 
 import { SettingsDataService } from '../services/settings/settings-data.service';
 import { RedfishDataService } from '../services/redfish/redfish-data.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const components = [
   HomeComponent,
@@ -29,7 +30,8 @@ const components = [
     ChartsModule
   ],
   declarations: [
-    ...components
+    ...components,
+    DashboardComponent
   ],
   exports: [
     ...components

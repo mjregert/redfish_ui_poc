@@ -9,10 +9,12 @@ import 'rxjs/add/operator/map';
 import { DataService } from '../data.service';
 import {SettingsDataService} from "../settings/settings-data.service";
 import { ComputerSystemCollection } from '../../models/computer-system-collection';
-import { ComputerSystem } from '../../models/computer-system';
-import { DcimCooling } from '../../models/dcim-cooling';
 import { DcimCoolingCollection } from '../../models/dcim-cooling-collection';
 import { DcimPowerCollection } from '../../models/dcim-power-collection';
+
+import { ComputerSystem } from '../../models/computer-system';
+import { DcimCooling } from '../../models/dcim-cooling';
+import { DcimPower } from '../../models/dcim-power';
 
 @Injectable()
 export class RedfishDataService extends DataService {
@@ -97,4 +99,20 @@ export class RedfishDataService extends DataService {
             });
         });
     }
+
+    getPower(id: string): Observable <DcimPower> {
+        return Observable.create(observer => {
+            let theUrl = this.baseUrl + '/DCIMPower/' + id;
+            this.get(theUrl)
+            .subscribe(dcimPowerAsJson => {
+                console.log("\n\nDCIMPower******\n" + JSON.stringify(dcimPowerAsJson, null, 4));
+                let dcimPower: DcimPower = new DcimCooling(dcimPowerAsJson);
+                observer.next(dcimPower);
+                observer.complete();
+            });
+        });
+    }
+
+
+
 }

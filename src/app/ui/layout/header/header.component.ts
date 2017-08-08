@@ -13,13 +13,12 @@ export class HeaderComponent implements OnInit {
   }
 
   headerLinks = [
-//    { link : ['/', 'home'], icon: 'home'},
-//    { link : ['/', 'about'], icon: 'info-standard'}
+    { link : ['/', 'dashboard'], icon: 'home'},
   ];
 
   subLinks = [
-    { link : ['/', 'home'], label: 'Home' },
-    { link : ['/', 'cs'], label: 'Computer Systems'}
+    { link : ['/', 'dashboard'], label: 'Dashboard' }
+//    { link : ['/', 'cs'], label: 'Computer Systems'}
   ];
 
   headerActions = [
