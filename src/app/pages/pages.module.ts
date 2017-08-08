@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ClarityModule } from 'clarity-angular';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
@@ -24,7 +25,8 @@ const components = [
     CommonModule,
     FormsModule,
     RouterModule,
-    ClarityModule
+    ClarityModule,
+    ChartsModule
   ],
   declarations: [
     ...components

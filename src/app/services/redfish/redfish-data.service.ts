@@ -12,6 +12,7 @@ import { ComputerSystemCollection } from '../../models/computer-system-collectio
 import { ComputerSystem } from '../../models/computer-system';
 import { DcimCooling } from '../../models/dcim-cooling';
 import { DcimCoolingCollection } from '../../models/dcim-cooling-collection';
+import { DcimPowerCollection } from '../../models/dcim-power-collection';
 
 @Injectable()
 export class RedfishDataService extends DataService {
@@ -28,7 +29,7 @@ export class RedfishDataService extends DataService {
     //-------------------------------------------------------------------------
     // Getter for _baseUrl
     protected get baseUrl(): string {
-        this._baseUrl = this.settingsDataService.getAllSettings().v1RedfishUrl;
+        this._baseUrl = "http://10.210.115.192:9090/redfish/v1";//this.settingsDataService.getAllSettings().v1RedfishUrl;
         return this._baseUrl;
     }
  
@@ -40,7 +41,6 @@ export class RedfishDataService extends DataService {
             this.get(this.baseUrl + '/systems')
             .subscribe(collectionAsJson => {
                 console.log("\n\nComputerSystemCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
-                //let collection: ComputerSystemCollection = JSON.parse(JSON.stringify(collectionAsJson));
                 let collection: ComputerSystemCollection = new ComputerSystemCollection(collectionAsJson);
                 observer.next(collection);
                 observer.complete();
@@ -63,7 +63,7 @@ export class RedfishDataService extends DataService {
 
     getDcimCoolingCollection(): Observable <DcimCoolingCollection> {
         return Observable.create(observer => {
-            this.get('assets/data/DCIMCooling.json')
+            this.get(this.baseUrl + '/DCIMCooling')
             .subscribe(collectionAsJson => {
                 console.log("\n\nDcimCoolingCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
                 let collection: DcimCoolingCollection = new DcimCoolingCollection(collectionAsJson);
@@ -73,9 +73,10 @@ export class RedfishDataService extends DataService {
         });
     }
 
-    getCooling(): Observable <DcimCooling> {
+    getCooling(id: string): Observable <DcimCooling> {
         return Observable.create(observer => {
-            this.get('assets/data/cooling.json')
+            let theUrl = this.baseUrl + '/DCIMCooling/' + id;
+            this.get(theUrl)
             .subscribe(dcimCoolingAsJson => {
                 console.log("\n\nDCIMCooling******\n" + JSON.stringify(dcimCoolingAsJson, null, 4));
                 let dcimCooling: DcimCooling = new DcimCooling(dcimCoolingAsJson);
@@ -84,5 +85,16 @@ export class RedfishDataService extends DataService {
             });
         });
     }
-}
 
+    getDcimPowerCollection(): Observable <DcimPowerCollection> {
+        return Observable.create(observer => {
+            this.get(this.baseUrl + '/DCIMPower')
+            .subscribe(collectionAsJson => {
+                console.log("\n\nDcimPowerCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
+                let collection: DcimPowerCollection = new DcimPowerCollection(collectionAsJson);
+                observer.next(collection);
+                observer.complete();
+            });
+        });
+    }
+}
