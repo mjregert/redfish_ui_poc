@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { RedfishDataService } from '../../services/redfish/redfish-data.service';
+import { BaseChartDirective } from 'ng2-charts/ng2-charts';
 
 import { ComputerSystemCollection } from '../../models/computer-system-collection';
 import { DcimCoolingCollection } from '../../models/dcim-cooling-collection';
@@ -16,6 +17,7 @@ import { DcimPower } from '../../models/dcim-power';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+    @ViewChild( BaseChartDirective ) chart: BaseChartDirective;
 
     ///////////////////////////////////////////////////////////////////////////
     // PUBLIC ATTRIBUTES
@@ -28,10 +30,10 @@ export class DashboardComponent implements OnInit {
     dcimPowerSystems: Observable < DcimPower[] >;
 
     // Doughnut
-    public doughnutChartLabels:string[] = [];
-    public doughnutChartData:number[] = [];
-    public doughnutChartType:string = 'doughnut';
-    public doughnutChartOptions: any = {
+    doughnutChartLabels:string[] = [];
+    doughnutChartData:number[] = [];
+    doughnutChartType:string = 'doughnut';
+    doughnutChartOptions: any = {
         cutoutPercentage: 70,
         legend: {
             position: 'bottom'
@@ -39,7 +41,7 @@ export class DashboardComponent implements OnInit {
         title: {
             display: 'true',
             position: 'bottom',
-            text: 'Node Types'
+            text: 'Device Types'
         }
     }
 
@@ -73,19 +75,19 @@ export class DashboardComponent implements OnInit {
                     let tokens = url.split('/');
                     let id = tokens[tokens.length-1];
                     let cooling = this.dataService.getCooling(id);
-                    this.doughnutChartLabels = [];
-                    this.doughnutChartData = [];
                     let csSubscription = cooling.forEach(element => {
                         objArray.push(element);
                         if (this.coolingDictionary.hasOwnProperty(element.realType)) {
                             console.log("BAR:  " + element.realType);
                             let index = this.coolingDictionary[element.realType];
                             this.doughnutChartData[index] = this.doughnutChartData[index]+1;
+                            this.chart.chart.update();
                         } else {
                             console.log("FOO:  " + element.realType);
                             let newlen = this.doughnutChartLabels.push(element.realType);
                             this.doughnutChartData.push(1);
                             this.coolingDictionary[element.realType] = newlen-1;
+                            this.chart.chart.update();
                         }
                     });
                 });
@@ -116,5 +118,4 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
     }
-
 }
