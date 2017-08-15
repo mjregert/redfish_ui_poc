@@ -4,8 +4,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { RedfishDataService } from '../../services/redfish/redfish-data.service';
-import { ComputerSystem } from '../../models/computer-system';
 import { ComputerSystemCollection } from '../../models/computer-system-collection';
+import { ComputerSystem } from '../../models/computer-system';
 
 @Component({
     selector: 'app-computer-systems',

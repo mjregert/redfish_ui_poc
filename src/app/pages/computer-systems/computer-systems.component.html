@@ -1,6 +1,6 @@
 <h1>All Computer Systems ({{(computerSystems | async)?.length}})</h1>
 <div class="row">
-    <div class="com-xl-8 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-xl-7 col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <clr-datagrid>
             <clr-dg-column [clrDgField]="'serialNumber'">Serial Number</clr-dg-column>
             <clr-dg-column [clrDgField]="'name'">Model</clr-dg-column>
@@ -18,7 +18,7 @@
             </clr-dg-footer>
         </clr-datagrid>
     </div>
-    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <div *ngIf="selectedSystem" class="node-details">
             <div class="card dell-card">
                 <div class="card-header">
@@ -44,8 +44,12 @@
                             <dd>{{selectedSystem.systemType}}</dd>
                             <dt>Asset Tag</dt>
                             <dd>{{selectedSystem.assetTag}}</dd>
-                            <!--dt>Indicator LED</dt>
-                            <dd>{{selectedSystem.indicatorLed}}</dd-->
+                            <dt>Indicator LED</dt>
+                            <dd>{{selectedSystem.indicatorLed}}</dd>
+                            <dt>Health</dt>
+                            <dd>{{selectedSystem.health}}</dd>
+                            <dt>State</dt>
+                            <dd>{{selectedSystem.state}}</dd>
                         </dl>
                     </div>
                 </div>

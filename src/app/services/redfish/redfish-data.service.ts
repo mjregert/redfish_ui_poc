@@ -42,7 +42,7 @@ export class RedfishDataService extends DataService {
         return Observable.create(observer => {
             this.get(this.baseUrl + '/systems')
             .subscribe(collectionAsJson => {
-                console.log("\n\nComputerSystemCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
+                //console.log("\n\nComputerSystemCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
                 let collection: ComputerSystemCollection = new ComputerSystemCollection(collectionAsJson);
                 observer.next(collection);
                 observer.complete();
@@ -55,7 +55,7 @@ export class RedfishDataService extends DataService {
             let theUrl = this.baseUrl + '/systems/' + id;
             this.get(theUrl)
             .subscribe(computerSystemAsJson => {
-                console.log("\n\nComputer System ******\n" + JSON.stringify(computerSystemAsJson, null, 4));
+                //console.log("\n\nComputer System ******\n" + JSON.stringify(computerSystemAsJson, null, 4));
                 let computerSystem: ComputerSystem = new ComputerSystem(computerSystemAsJson);
                 observer.next(computerSystem);
                 observer.complete();
@@ -67,7 +67,7 @@ export class RedfishDataService extends DataService {
         return Observable.create(observer => {
             this.get(this.baseUrl + '/DCIMCooling')
             .subscribe(collectionAsJson => {
-                console.log("\n\nDcimCoolingCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
+                //console.log("\n\nDcimCoolingCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
                 let collection: DcimCoolingCollection = new DcimCoolingCollection(collectionAsJson);
                 observer.next(collection);
                 observer.complete();
@@ -80,7 +80,7 @@ export class RedfishDataService extends DataService {
             let theUrl = this.baseUrl + '/DCIMCooling/' + id;
             this.get(theUrl)
             .subscribe(dcimCoolingAsJson => {
-                console.log("\n\nDCIMCooling******\n" + JSON.stringify(dcimCoolingAsJson, null, 4));
+                //console.log("\n\nDCIMCooling******\n" + JSON.stringify(dcimCoolingAsJson, null, 4));
                 let dcimCooling: DcimCooling = new DcimCooling(dcimCoolingAsJson);
                 observer.next(dcimCooling);
                 observer.complete();
@@ -92,7 +92,7 @@ export class RedfishDataService extends DataService {
         return Observable.create(observer => {
             this.get(this.baseUrl + '/DCIMPower')
             .subscribe(collectionAsJson => {
-                console.log("\n\nDcimPowerCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
+                //console.log("\n\nDcimPowerCollection******\n" + JSON.stringify(collectionAsJson, null, 4));
                 let collection: DcimPowerCollection = new DcimPowerCollection(collectionAsJson);
                 observer.next(collection);
                 observer.complete();
@@ -105,7 +105,7 @@ export class RedfishDataService extends DataService {
             let theUrl = this.baseUrl + '/DCIMPower/' + id;
             this.get(theUrl)
             .subscribe(dcimPowerAsJson => {
-                console.log("\n\nDCIMPower******\n" + JSON.stringify(dcimPowerAsJson, null, 4));
+                //console.log("\n\nDCIMPower******\n" + JSON.stringify(dcimPowerAsJson, null, 4));
                 let dcimPower: DcimPower = new DcimCooling(dcimPowerAsJson);
                 observer.next(dcimPower);
                 observer.complete();

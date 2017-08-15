@@ -1,0 +1,52 @@
+<h1>All Power Systems ({{(dcimPowerSystems | async)?.length}})</h1>
+<div class="row">
+    <div class="col-xl-7 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <clr-datagrid>
+            <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+            <clr-dg-column [clrDgField]="'realType'">Real Type</clr-dg-column>
+            <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
+            <clr-dg-column [clrDgField]="'realth'">Health</clr-dg-column>
+            <clr-dg-row *clrDgItems="let ps of (dcimPowerSystems | async)" [clrDgItem]="ps" (click)="onSelect(cs)" [class.selected]="ps === selectedSystem">
+                <clr-dg-cell>{{ ps.oDataId }}</clr-dg-cell>
+                <clr-dg-cell>{{ ps.id }}</clr-dg-cell>
+                <clr-dg-cell>{{ ps.realType }}</clr-dg-cell>
+                <clr-dg-cell>{{ ps.state }}</clr-dg-cell>
+                <clr-dg-cell>{{ ps.health }}</clr-dg-cell>
+            </clr-dg-row>
+            <clr-dg-footer>
+                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}} of {{pagination.totalItems}} Power Systems
+                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+            </clr-dg-footer>
+        </clr-datagrid>
+    </div>
+    <div class="col-xl-5 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div *ngIf="selectedSystem" class="node-details">
+            <div class="card dell-card">
+                <div class="card-header">
+                    Selected (1)
+                </div>
+                <div class="card-title dell-card-title">
+                        {{selectedSystem.name}}
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary btn-block" href="#" [routerLink]="[selectedSystem.id]">View Details</a>
+                </div>
+                <div class="card-block">
+                    <div class="card-text">
+                        <dl>
+                            <dt>ID</dt>
+                            <dd>{{selectedSystem.id}}</dd>
+                            <dt>Real Type</dt>
+                            <dd>{{selectedSystem.realType}}</dd>
+                            <dt>Health</dt>
+                            <dd>{{selectedSystem.health}}</dd>
+                            <dt>State</dt>
+                            <dd>{{selectedSystem.state}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

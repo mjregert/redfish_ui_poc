@@ -27,7 +27,7 @@ export class HomeComponent {
  
     // Pie
     public pieChartType:string = 'pie';
-    public pieChartLabels:string[] = [];
+    public pieChartLabels:string[] = ["Foo", "Bar", "Hello World"];
     public pieChartData:number[] = [300, 500, 100];
 
     public deviceTypeMap: Map<string, number> = new Map();

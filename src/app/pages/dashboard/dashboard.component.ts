@@ -27,6 +27,24 @@ export class DashboardComponent implements OnInit {
     dcimCoolingSystems: Observable < DcimCooling[] >;
     dcimPowerSystems: Observable < DcimPower[] >;
 
+    // Doughnut
+    public doughnutChartLabels:string[] = [];
+    public doughnutChartData:number[] = [];
+    public doughnutChartType:string = 'doughnut';
+    public doughnutChartOptions: any = {
+        cutoutPercentage: 70,
+        legend: {
+            position: 'bottom'
+        },
+        title: {
+            display: 'true',
+            position: 'bottom',
+            text: 'Node Types'
+        }
+    }
+
+    coolingDictionary: { [index: string]: number } = {};
+
     constructor(private dataService: RedfishDataService) {
         this.computerSystemCollection = this.dataService.getSystemCollection();
         this.computerSystems = Observable.create(observer => {
@@ -48,7 +66,6 @@ export class DashboardComponent implements OnInit {
 
         this.dcimCoolingCollection = this.dataService.getDcimCoolingCollection();
         this.dcimCoolingSystems = Observable.create(observer => {
-          console.log("Getting cooling devices now");
             let objArray: DcimCooling[] = [];
             let subscription = this.dcimCoolingCollection.forEach(collection => {
                 collection.members.forEach(element => {
@@ -56,8 +73,20 @@ export class DashboardComponent implements OnInit {
                     let tokens = url.split('/');
                     let id = tokens[tokens.length-1];
                     let cooling = this.dataService.getCooling(id);
+                    this.doughnutChartLabels = [];
+                    this.doughnutChartData = [];
                     let csSubscription = cooling.forEach(element => {
                         objArray.push(element);
+                        if (this.coolingDictionary.hasOwnProperty(element.realType)) {
+                            console.log("BAR:  " + element.realType);
+                            let index = this.coolingDictionary[element.realType];
+                            this.doughnutChartData[index] = this.doughnutChartData[index]+1;
+                        } else {
+                            console.log("FOO:  " + element.realType);
+                            let newlen = this.doughnutChartLabels.push(element.realType);
+                            this.doughnutChartData.push(1);
+                            this.coolingDictionary[element.realType] = newlen-1;
+                        }
                     });
                 });
                 observer.next(objArray);
@@ -83,10 +112,6 @@ export class DashboardComponent implements OnInit {
                 observer.complete();
             });
         });
-
-
-
-
     }
 
     ngOnInit() {

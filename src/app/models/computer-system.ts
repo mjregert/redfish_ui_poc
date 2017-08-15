@@ -16,6 +16,8 @@ export class ComputerSystem {
     hostName: string;
     indicatorLed: string;
     powerState: string;
+    health: string;
+    state: string;
 
     /*
     Constructs a ComputerSystem from a JSON payload
@@ -36,6 +38,8 @@ export class ComputerSystem {
             this.hostName     = json["HostName"];
             this.indicatorLed = json["IndicatorLED"];
             this.powerState   = json["PowerState"];
+            this.health        = json["Status"]["Health"];
+            this.state        = json["Status"]["State"];
         }
     }    
 }

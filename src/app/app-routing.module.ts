@@ -9,14 +9,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { ComputerSystemsComponent } from './pages/computer-systems/computer-systems.component';
-
-/*const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'cs', component: ComputerSystemsComponent },
-    { path: 'about', component: AboutComponent },
-    { path: 'settings', component: SettingsComponent }
-];*/
+import { PowerSystemsComponent } from './pages/power-systems/power-systems.component';
+import { CoolingSystemsComponent } from './pages/cooling-systems/cooling-systems.component';
 
 const routes: Routes = [
     {
@@ -24,7 +18,9 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
             { path: 'dashboard', component: DashboardComponent },
-            { path: 'cs', component: ComputerSystemsComponent },
+            { path: 'computer', component: ComputerSystemsComponent },
+            { path: 'power', component: PowerSystemsComponent },
+            { path: 'cooling', component: CoolingSystemsComponent },
             { path: 'settings', component: SettingsComponent }
         ]
     }

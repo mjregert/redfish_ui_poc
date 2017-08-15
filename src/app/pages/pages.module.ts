@@ -13,6 +13,8 @@ import { ComputerSystemsComponent } from './computer-systems/computer-systems.co
 import { SettingsDataService } from '../services/settings/settings-data.service';
 import { RedfishDataService } from '../services/redfish/redfish-data.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PowerSystemsComponent } from './power-systems/power-systems.component';
+import { CoolingSystemsComponent } from './cooling-systems/cooling-systems.component';
 
 const components = [
   HomeComponent,
@@ -31,7 +33,9 @@ const components = [
   ],
   declarations: [
     ...components,
-    DashboardComponent
+    DashboardComponent,
+    PowerSystemsComponent,
+    CoolingSystemsComponent
   ],
   exports: [
     ...components

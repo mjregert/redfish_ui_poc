@@ -1,5 +1,65 @@
-<h1>Computer System Collection ({{(computerSystemCollection | async)?.membersCount}})</h1>
-<h1>Cooling Collection ({{(dcimCoolingCollection | async)?.membersCount}})</h1>
-<h1>Power Collection ({{(dcimPowerCollection | async)?.membersCount}})</h1>
-<h1>All Cooling Systems ({{(dcimCoolingSystems | async)?.length}})</h1>
-<h1>All Power Systems ({{(dcimPowerSystems | async)?.length}})</h1>
+<p>Computer System Collection ({{(computerSystemCollection | async)?.membersCount}})</p>
+<p>Cooling Collection ({{(dcimCoolingCollection | async)?.membersCount}})</p>
+<p>Power Collection ({{(dcimPowerCollection | async)?.membersCount}})</p>
+<p>All Cooling Systems ({{(dcimCoolingSystems | async)?.length}})</p>
+<p>All Power Systems ({{(dcimPowerSystems | async)?.length}})</p>
+
+<!--div style="display: block; width: 300px">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+  ></canvas>
+</div-->
+
+<!--ul>
+  <li *ngFor="let label of doughnutChartLabels; let i = index">
+    Labels: {{i}} : {{label}}
+  </li>
+</ul>
+
+<ul>
+  <li *ngFor="let value of doughnutChartData; let i = index">
+    Data: {{i}} : {{value}}
+  </li>
+</ul-->
+
+
+<!--div class="row">
+    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div style="display: block" style="width: 250px">
+            <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [options]="doughnutChartOptions"
+                ></canvas>
+        </div>
+    </div>
+</div-->
+
+<div class="row">
+    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <clr-datagrid>
+            <clr-dg-column [clrDgField]="'oDataId'">oData ID</clr-dg-column>
+            <clr-dg-column [clrDgField]="'id'">ID</clr-dg-column>
+            <clr-dg-column [clrDgField]="'realType'">Real Type</clr-dg-column>
+            <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
+            <clr-dg-column [clrDgField]="'realth'">Health</clr-dg-column>
+            <clr-dg-row *clrDgItems="let dcs of (dcimCoolingSystems | async)" [clrDgItem]="dcs">
+                <clr-dg-cell>{{ dcs.oDataId }}</clr-dg-cell>
+                <clr-dg-cell>{{ dcs.id }}</clr-dg-cell>
+                <clr-dg-cell>{{ dcs.realType }}</clr-dg-cell>
+                <clr-dg-cell>{{ dcs.state }}</clr-dg-cell>
+                <clr-dg-cell>{{ dcs.health }}</clr-dg-cell>
+            </clr-dg-row>
+        </clr-datagrid>
+        <clr-datagrid>
+            <clr-dg-column [clrDgField]="'realType'">Real Type</clr-dg-column>
+            <clr-dg-column [clrDgField]="'state'">State</clr-dg-column>
+            <clr-dg-column [clrDgField]="'realth'">Health</clr-dg-column>
+            <clr-dg-row *clrDgItems="let dps of (dcimPowerSystems | async)" [clrDgItem]="dps">
+                <clr-dg-cell>{{ dps.realType }}</clr-dg-cell>
+                <clr-dg-cell>{{ dps.state }}</clr-dg-cell>
+                <clr-dg-cell>{{ dps.health }}</clr-dg-cell>
+            </clr-dg-row>
+        </clr-datagrid>
+    </div>
+</div>
+
