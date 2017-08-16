@@ -33,8 +33,9 @@ export class DashboardComponent implements OnInit {
     doughnutChartLabels:string[] = [];
     doughnutChartData:number[] = [];
     doughnutChartType:string = 'doughnut';
+    doughnutChartColors: any[] = [{ backgroundColor: ["#b8436d", "#00d9f9", "#a4c73c", "#a4add3"] }];
     doughnutChartOptions: any = {
-        cutoutPercentage: 70,
+        cutoutPercentage: 40,
         legend: {
             position: 'bottom'
         },

@@ -1,16 +1,17 @@
-<p>Computer System Collection ({{(computerSystemCollection | async)?.membersCount}})</p>
-<!--p>Cooling Collection ({{(dcimCoolingCollection | async)?.membersCount}})</p-->
-<!--p>Power Collection ({{(dcimPowerCollection | async)?.membersCount}})</p-->
-<p>All Cooling Systems ({{(dcimCoolingSystems | async)?.length}})</p>
-<p>All Power Systems ({{(dcimPowerSystems | async)?.length}})</p>
+<h1>Discovered Devices</h1>
+<p>Computer Systems ({{(computerSystemCollection | async)?.membersCount}})</p>
+<p>Cooling Systems ({{(dcimCoolingSystems | async)?.length}})</p>
+<p>Power Systems ({{(dcimPowerSystems | async)?.length}})</p>
+
 <div class="row">
-    <div class="col-xl-12 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div style="display: block" style="width: 250px">
+    <div class="col-xl-7 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div style="display: block" style="width: 350px">
             <canvas baseChart
                  [data]="doughnutChartData"
                  [labels]="doughnutChartLabels"
                  [chartType]="doughnutChartType"
                  [options]="doughnutChartOptions"
+                 [colors]="doughnutChartColors"
                 ></canvas>
         </div>
     </div>
@@ -20,7 +21,6 @@
             Labels: {{i}} : {{label}}
         </li>
         </ul>
-
         <ul>
         <li *ngFor="let value of doughnutChartData; let i = index">
             Data: {{i}} : {{value}}
